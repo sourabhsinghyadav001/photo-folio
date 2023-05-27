@@ -1,0 +1,37 @@
+.container {
+  padding: 0 5%;
+}
+.bar {
+  display: flex;
+  justify-content: space-between;
+}
+.bar span {
+  align-items: center;
+  aspect-ratio: 1;
+  background-color: #fcfcfc;
+  border-radius: 50%;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.24);
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  margin-right: 30px;
+  width: 50px;
+}
+.bar img {
+  width: 30px;
+}
+.form {
+  background-color: #f4f4f4;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px 0 rgba(99, 99, 99, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 50px auto 30px;
+  padding: 20px;
+  width: 70%;
+}
+.banner {
+  font-size: 1.7rem;
+  font-weight: 700;
+}
