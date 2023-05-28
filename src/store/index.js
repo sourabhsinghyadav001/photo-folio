@@ -18,12 +18,24 @@ const gallerySlice = createSlice({
     },
   },
 });
+const imageGallerySlice = createSlice({
+  name: "imageGallery",
+  initialState: {},
+  reducers: {
+    setPhotos(state, { payload }) {
+      return payload;
+    },
+  },
+});
 const store = configureStore({
   reducer: {
     router: routerSlice.reducer,
     gallery: gallerySlice.reducer,
+    imageGallery: imageGallerySlice.reducer,
   },
 });
+
 const routerActions = routerSlice.actions;
 const galleryActions = gallerySlice.actions;
-export { routerActions, galleryActions, store };
+const imageGalleryActions = imageGallerySlice.actions;
+export { routerActions, galleryActions, imageGalleryActions, store };

@@ -1,10 +1,13 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { db } from "../firebaseSettings";
 import { collection, onSnapshot } from "firebase/firestore";
 import { useDispatch, useSelector } from "react-redux";
 import { galleryActions, routerActions } from "../store";
+import { Spinner } from "react-bootstrap";
 import classes from "./Gallery.module.css";
+
 export default function Gallery() {
+  const [loading, setLoading] = useState();
   const dispatch = useDispatch();
   const gallery = useSelector((state) => state.gallery);
   useEffect(() => {
@@ -14,8 +17,18 @@ export default function Gallery() {
           snapshot.docs.map((data) => ({ id: data.id, ...data.data() }))
         )
       );
+      setLoading(false);
     });
+    return () => unsub();
   }, []);
+  if (loading)
+    return (
+      <div style={{ textAlign: "center" }}>
+        <Spinner animation="border" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </Spinner>
+      </div>
+    );
   return (
     <div className={classes.container}>
       {gallery.map((data) => (

@@ -5,7 +5,6 @@ import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const page = useSelector((state) => state.router);
-  console.log(page);
   return <Router page={page} />;
 }
 

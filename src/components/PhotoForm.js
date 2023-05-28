@@ -7,17 +7,16 @@ import { routerActions, store } from "../store";
 import { useState } from "react";
 import { setDoc, doc } from "firebase/firestore";
 import { db } from "../firebaseSettings";
-import { toast, ToastContainer } from "react-toastify";
-export default function PhotoForm() {
+import { toast } from "react-toastify";
+export default function PhotoForm({ hasData }) {
   const dispatch = useDispatch();
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [imageTitle, setImageTitle] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const albumName = store.getState().router.album;
-  
+
   return (
     <div className={classes.container}>
-      <ToastContainer />
       <div className={classes.bar}>
         <span
           onClick={() =>
@@ -26,7 +25,9 @@ export default function PhotoForm() {
         >
           <img src="/back.png" alt="back"></img>
         </span>
-        <h3>No images found in the album.</h3>
+        <h3>
+          {hasData ? `Images in ${albumName}` : "No images found in the album."}
+        </h3>
         {isFormOpen ? (
           <Button
             variant="red"
@@ -78,12 +79,18 @@ export default function PhotoForm() {
             <FormButton
               onClick={async () => {
                 try {
-                  await setDoc(
-                    doc(db, "PhotoFolio", albumName),
-                    { [imageTitle]: imageUrl },
-                    { merge: true }
-                  );
-                  toast("Added pic successfully");
+                  if (
+                    Object.keys(store.getState().imageGallery).find(
+                      (e) => e === imageTitle
+                    ) === undefined
+                  ) {
+                    await setDoc(
+                      doc(db, "PhotoFolio", albumName),
+                      { [imageTitle]: imageUrl },
+                      { merge: true }
+                    );
+                    toast("Added pic successfully");
+                  } else toast("The name already exists");
                 } catch (err) {
                   toast("Something went wrong!");
                 }

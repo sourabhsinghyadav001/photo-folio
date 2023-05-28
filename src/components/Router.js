@@ -1,12 +1,17 @@
 import Navbar from "./Navbar";
 import Gallery from "./Gallery";
 import AlbumForm from "./AlbumForm";
-import PhotoForm from "./PhotoForm";
+import { ToastContainer } from "react-toastify";
+import ImageGallery from "./ImageGallery";
+import { useEffect } from "react";
+
 export default function Router({ page: { url, album, image } }) {
+  useEffect(() => (document.title = "PhotoFolio"), []);
   switch (url) {
     case "HOME":
       return (
         <>
+          <ToastContainer />
           <Navbar />
           <AlbumForm />
           <Gallery />
@@ -15,8 +20,9 @@ export default function Router({ page: { url, album, image } }) {
     case "INSIDE_ALBUM":
       return (
         <>
+          <ToastContainer />
           <Navbar />
-          <PhotoForm />
+          <ImageGallery />
         </>
       );
   }

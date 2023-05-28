@@ -1,0 +1,64 @@
+.container {
+  grid-gap: 20px;
+  display: grid;
+  gap: 20px;
+  grid-auto-flow: row;
+  grid-auto-rows: 150px;
+  grid-template: repeat(1, 150px) / repeat(auto-fit, minmax(175px, 0.5fr));
+  margin-bottom: 50px;
+  padding: 0 5%;
+}
+.searchbar {
+  margin-top: 20px;
+  padding: 0 5%;
+  margin-bottom: 10px;
+}
+.flex {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.search,
+.cross {
+  cursor: pointer;
+  width: 30px;
+}
+.input {
+  font-size: 1.1rem;
+  font-weight: 300;
+  outline: none;
+  padding: 5px 5px 0 10px;
+}
+
+.image {
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 8px 0 rgba(99, 99, 99, 0.2);
+  box-sizing: border-box;
+  cursor: pointer;
+  height: 100%;
+  padding: 10px;
+  position: relative;
+  width: 100%;
+}
+.actualImage {
+  height: 80%;
+  object-fit: cover;
+  width: 100%;
+}
+.trash,
+.edit {
+  width: 35px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translateY(-50%);
+  transition: 0.3s;
+}
+.edit {
+  right: 40px;
+}
+.trash:hover,
+.edit:hover {
+  width: 32px;
+}

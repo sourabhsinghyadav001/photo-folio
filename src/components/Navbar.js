@@ -7,7 +7,7 @@ export default function Navbar() {
     <div
       className={classes.container}
       onClick={() => {
-        dispatch(routerActions.gotoPage("HOME"));
+        dispatch(routerActions.gotoPage({ url: "HOME", album: "" }));
       }}
     >
       <img src="/logo.png" alt="PhotoFolio Logo"></img>
